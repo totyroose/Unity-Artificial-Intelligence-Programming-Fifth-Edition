@@ -15,6 +15,14 @@ public class PlayerTankController : MonoBehaviour {
 
     private float elapsedTime;
 
+
+     void Start()
+    {
+        
+        
+    }
+
+
     void OnEndGame() {
         // Don't allow any more control changes when the game ends
         this.enabled = false;
@@ -38,10 +46,10 @@ public class PlayerTankController : MonoBehaviour {
         // If the ray is parallel to the plane, Raycast will return false.
         if (playerPlane.Raycast(rayCast, out var hitDist)) {
             // Get the point along the ray that hits the calculated distance.
-            Vector3 rayHitPoint = rayCast.GetPoint(hitDist);
+           Vector3 rayHitPoint = rayCast.GetPoint(hitDist);
 
             Quaternion targetRotation = Quaternion.LookRotation(rayHitPoint - transform.position);
-            turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation, targetRotation, Time.deltaTime * turretRotSpeed);
+           turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation, targetRotation, Time.deltaTime * turretRotSpeed);
         }
 
         if (Input.GetKey(KeyCode.W)) {
